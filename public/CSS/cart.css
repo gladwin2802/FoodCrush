@@ -1,0 +1,94 @@
+.cart-page {
+    margin: 30px auto;
+}
+
+.cart-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+table {
+    margin: 10px 0;
+    width:100%;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid #000;
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #0eb374;
+    font-weight: normal;
+}
+
+td {
+    padding: 10px 5px;
+}
+
+td span {
+    width : 40px;
+    height: 30px;
+    padding: 5px;
+}
+
+td a {
+    color: red;
+    font-size: 18px;
+    padding: 10px;
+}
+
+td img {
+    width:80px;
+    height:80px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+td:last-child {
+    text-align: right;
+}
+
+/* total price */
+
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table {
+    width:100%;
+    max-width: 400px;
+}
+
+/* heart button */
+
+.wbtn {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.wbtn:hover {
+    background-color: #f5f5f5;
+}
+
+.wbtn ion-icon {
+    font-size: 24px;
+    color: #0eb374;
+}
+
+/* Order button */
+
+.btn {
+    float: right;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <title>Home - Food Crush</title>
+</head>
+
+<body>
+
+    <div class="header">
+        {{> navbar}}
+        <div class="row">
+            <div class="col2">
+                <h1>Delicious Feast<br>On your Click!</h1>
+                <p>Food is the symbolic of love <br>when words are not adequate</p>
+                <a href="/products/{{userdetails.ID}}" class="btn">Check Out &#8594;</a>
+            </div>
+            <div class="col2">
+                <img src="/images/transparent.png" height="400px" style="box-shadow:none" alt="Oops">
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title" style="margin-top:30px">Varities</h2>
+            <div class="row">
+                <div class="col3">
+                    <img src="/images/biriyani.jpg" alt="Oops" >
+                    <h3>Biriyani</h3>
+                </div>
+                <div class="col3">
+                    <img src="/images/food9.jpg" alt="Oops" >
+                    <h3>Fast Foods</h3>
+                </div>
+                <div class="col3">
+                    <img src="/images/indianfood.jpg" alt="Oops" >
+                    <h3>Indian Specials</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title">Featured</h2>
+    </div>
+
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col2">
+                    <img src="/images/food6.jpg" alt="Oops" class="offer-img" >
+                </div>
+                <div class="col2">
+                    <p>Non Veg <span class="vegetarian-symbol"></span></p>
+                    <h1>Mutton Biryani</h1>
+                    <small style="font-style:italic">Indulge in the heavenly delight of mutton biryani,<br> where every spoonful tells a story of culinary bliss.</small>
+                    <br><a href="/productdetails/{{userdetails.ID}}/6" class="btn">Details &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title" style="margin-top:30px">About</h2>
+        <div class="about">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;Welcome to Food Crush, your ultimate destination for a delightful and hassle-free online food delivery experience! We are passionate about connecting food lovers with their favorite meals from a variety of restaurants, bringing convenience and satisfaction to your doorstep. Food Crush is committed to delivering exceptional quality, prompt service, and mouthwatering food. We aim to provide you with an exceptional dining experience from the comfort of your home or office, whenever you crave something delicious.</p>
+            <br><p>Indulge your taste buds and let Food Crush satisfy your food cravings today!</p>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title" style="margin-top:30px">Reviews</h2>
+    </div>
+    <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col3">
+                    <i class="fa fa-quote-left" ></i>
+                    <p>I can't express how much I love the food delivery website. It offers a wide selection of restaurants and cuisines to choose from, making it easy to satisfy any craving. The website is visually appealing and provides detailed information about each restaurant, including ratings and customer reviews. The delivery is consistently punctual, and the food arrives hot and fresh. I rely on this website for delicious meals whenever I don't feel like cooking. It's a fantastic service!</p>
+                    <div class="rating">
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star-o" ></i>
+                    </div>
+                    <img src="/images/peterparker.jpg" alt="Oops" >
+                    <h3>Peter Parker</h3>
+                </div>
+                <div class="col3">
+                    <i class="fa fa-quote-left" ></i>
+                    <p>I am amazed by the convenience and efficiency of the food delivery website. It's incredibly easy to navigate and find the perfect meal from a variety of restaurants. Placing an order is a breeze, and the website keeps me updated with real-time tracking. The food always arrives on time and in great condition. This website has become my go-to choice for hassle-free and delicious meals.</p>
+                    <div class="rating">
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star-o" ></i>
+                    </div>
+                    <img src="/images/rossie.jpg" alt="Oops" >
+                    <h3>Rossie</h3>
+                </div>
+                <div class="col3">
+                    <i class="fa fa-quote-left" ></i>
+                    <p>The food delivery website has made my life so much easier. It saves me time and effort by bringing my favorite restaurants right to my doorstep. The website's user-friendly interface makes it simple to browse menus, compare prices, and read reviews. The ordering process is seamless, and I appreciate the prompt delivery service. I highly recommend this website to anyone who wants quality food delivered with convenience.</p>
+                    <div class="rating">
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star" ></i>
+                        <i class="fa fa-star-o" ></i>
+                    </div>
+                    <img src="/images/mukilan.jpg" alt="Oops">
+                    <h3>Mukilan</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col5"><img src="/images/pizzahut.png" alt="Oops!"></div>
+                <div class="col5"><img src="/images/kfc.png" alt="Oops!"></div>
+                <div class="col5"><img src="/images/burgerking.png" alt="Oops!"></div>
+                <div class="col5"><img src="/images/mcdonalds.png" alt="Oops!"></div>
+            </div>
+        </div>
+    </div>
+
+    {{> footer}}
+
+</body>
+</html>

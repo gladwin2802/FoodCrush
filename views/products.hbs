@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <title>Products - Food Crush</title>
+    <link rel="stylesheet" href="/CSS/products.css">
+    <script src="/JS/products.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        {{> navbar}}
+    </div>
+
+    <div class="small-container">
+        <h2 class="title" style="margin: 50px 0;">Food</h2>
+        <div class="panel">
+            <div class="categories">
+                <div class="col3 active" id="category-all">
+                    <h3>All</h3>
+                </div>
+                <div class="col3" id="category-veg">
+                    <h3>Veg</h3>
+                </div>
+                <div class="col3" id="category-non veg">
+                    <h3>Non Veg</h3>
+                </div>
+            </div>
+        </div>
+        <div class="food-container">
+            <div class="row" id="product-container">
+                {{#each products}}
+                {{#if (eq (mod @index 4) 0)}}
+                <div class="row">
+                {{/if}}
+                <div class="col4" data-category="{{category}}">
+                    <a href="/productdetails/{{../userdetails.ID}}/{{pid}}">
+                        <img src="/images/food{{pid}}.jpg" id="product-{{pid}}" alt="Product Image">
+                    </a>
+                    <div class="below-container">
+                        <div class="prod-row">
+                            <h4>{{pname}}</h4>
+                            <div class="rating">
+                                <span>{{{getRatingHTML rating}}}</span>
+                            </div>
+                            <p>INR. {{price}}</p>
+                        </div>
+                        <div class="prod-col">
+                            {{#if (eq liked 0)}}
+                            <a href="/addToWishlist/{{../userdetails.ID}}/{{pid}}" class="wbtn" id="wishlistButton">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </a>
+                            {{else}}
+                            <a href="/addToWishlist/{{../userdetails.ID}}/{{pid}}" class="wbtn" id="wishlistButton">
+                                <ion-icon name="heart"></ion-icon>
+                            </a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{#if (eq (mod @index 4) 3)}}
+                    </div>
+                {{/if}}
+            {{/each}}
+            {{#if checkLastRow}}
+                </div>
+            {{/if}}
+            </div>
+        </div>
+    </div>
+
+    {{#if products}}
+    {{else}}
+        <div class="image-container">
+            <img src="/images/product-not-found.gif" alt="Image">
+            <h3>No food available...</h3>
+        </div>
+    {{/if}}
+
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col5"><img src="/images/pizzahut.png" alt="Oops!"></div>
+                <div class="col5"><img src="/images/kfc.png" alt="Oops!"></div>
+                <div class="col5"><img src="/images/burgerking.png" alt="Oops!"></div>
+                <div class="col5"><img src="/images/mcdonalds.png" alt="Oops!"></div>
+            </div>
+        </div>
+    </div>
+
+    {{> footer}}
+
+    <script>
+        // Get the category elements
+        const categoryAll = document.getElementById('category-all');
+        const categoryVeg = document.getElementById('category-veg');
+        const categoryNonVeg = document.getElementById('category-non veg');
+        // Add click event listeners to the category elements
+        categoryAll.addEventListener('click', () => {
+            filterProducts('all');
+            categoryAll.classList.add('active');
+            categoryVeg.classList.remove('active');
+            categoryNonVeg.classList.remove('active');
+        });
+        categoryVeg.addEventListener('click', () => {
+            filterProducts('veg');
+            categoryAll.classList.remove('active');
+            categoryVeg.classList.add('active');
+            categoryNonVeg.classList.remove('active');
+        });
+        categoryNonVeg.addEventListener('click', () => {
+            filterProducts('non veg');
+            categoryAll.classList.remove('active');
+            categoryVeg.classList.remove('active');
+            categoryNonVeg.classList.add('active');
+        });
+        // Declare a global variable to store all products
+        let allProducts = [];
+        // Function to initialize the products
+        function initializeProducts() {
+            // Get all product elements
+            const productElements = document.querySelectorAll('.col4');
+            // Populate the allProducts array
+            allProducts = Array.from(productElements);
+        }
+        // Function to filter and display products based on the selected category
+        function filterProducts(category) {
+            // Get the product container
+            const productContainer = document.getElementById('product-container');
+            // Clear the existing products
+            productContainer.innerHTML = '';
+            // Filter the products based on the category
+            const filteredProducts = allProducts.filter((product) => {
+                const productCategory = product.dataset.category;
+                return category === 'all' || productCategory === category;
+            });
+            // Loop through the filtered products and append them to the container
+            let currentRow = document.createElement('div');
+            currentRow.classList.add('row');
+            filteredProducts.forEach((product, index) => {
+                // Clone the product element to maintain the original elements in the DOM
+                const clonedProductElement = product.cloneNode(true);
+                // Add the cloned product element to the current row
+                currentRow.appendChild(clonedProductElement);
+                // If the current row is full or it's the last product, create a new row
+                if ((index + 1) % 4 === 0 || index === filteredProducts.length - 1) {
+                productContainer.appendChild(currentRow);
+                currentRow = document.createElement('div');
+                currentRow.classList.add('row');
+                }
+            });
+        }
+        // Function to handle category selection
+        function handleCategorySelection(category) {
+            filterProducts(category);
+        }
+        // Function to initialize the products and set up event listeners
+        function initialize() {
+            initializeProducts();
+            const categoryAll = document.getElementById('category-all');
+            const categoryVeg = document.getElementById('category-veg');
+            const categoryNonVeg = document.getElementById('category-non veg');
+            categoryAll.addEventListener('click', () => {
+                handleCategorySelection('all');
+            });
+            categoryVeg.addEventListener('click', () => {
+                handleCategorySelection('veg');
+            });
+            categoryNonVeg.addEventListener('click', () => {
+                handleCategorySelection('non veg');
+            });
+        }
+        // Call the initialize function when the page is loaded
+        window.addEventListener('DOMContentLoaded', initialize);
+        function checkLastRow() {
+            // Get all the rows
+            const rows = document.querySelectorAll('.row');
+            // Get the last row
+            const lastRow = rows[rows.length - 1];
+            // Get the col4 elements in the last row
+            const col4Elements = lastRow.querySelectorAll('.col4');
+            // Check if there are exactly four col4 elements
+            return col4Elements.length != 4;
+        }
+    </script>
+</body>

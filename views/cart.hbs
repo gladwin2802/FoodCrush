@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <title>Cart - Food Crush</title>
+    <link rel="stylesheet" href="/CSS/noProductFound.css">
+    <link rel="stylesheet" href="/CSS/cart.css">
+</head>
+
+<body>
+
+    <div class="header">
+        {{> navbar}}
+    </div>
+
+    <div class="small-container">
+        <h2 class="title" style="margin-top:30px">Cart</h2>
+    </div>
+    <div class="small-container cart-page">
+        <table>
+            {{#if products}}
+            <tr st>
+                <th>Order</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            {{/if}}
+            {{#each products}}
+            <tr onclick="window.location.href='/productdetails/{{this.userid}}/{{this.pid}}';">
+                <td>
+                    <div class="cart-info">
+                        <img src="/images/food{{pid}}.jpg" alt="">
+                        <div>
+                            <p>{{pname}}</p>
+                            <small>Price: INR. {{price}}</small>
+                            <a href="/cartDelete/{{../userdetails.ID}}/{{pid}}"><ion-icon name="trash-outline"></ion-icon></a>
+                        </div>
+                    </div>
+                </td>
+                <td><span>{{quantity}}</span></td>
+                <td>INR. {{multiply quantity price}}</td>
+            </tr>
+            {{/each}}
+        </table>
+        {{#if products}}
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>INR. {{calculateTotalPrice products}}</td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>12.5%</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>INR. {{calculateTotalPriceWithTax products}}</td>
+                </tr>
+            </table>
+        </div>
+        <a href="/ordersInsert/{{userdetails.ID}}" class="btn">Order now &#8594;</a>
+        {{else}}
+        <div class="image-container">
+            <img src="/images/product-not-found.gif" alt="Image">
+            <h3>No food added to cart !!!</h3>
+        </div>
+        {{/if}}
+    </div>
+
+    {{> footer}}
+
+</body>
+
+</html>

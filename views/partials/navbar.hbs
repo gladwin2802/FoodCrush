@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <img src="/images/logo.jpg" style="border-radius:5px" alt="Oops" width="70px">
+        </div>
+        <nav>
+            <ul id="MenuItems" style="max-height:0px">
+                <li><a href="/home/{{userdetails.ID}}">Home</a></li>
+                <li><a href="/products/{{userdetails.ID}}">Food</a></li>
+                <li><a href="/orders/{{userdetails.ID}}">Orders</a></li>
+                <li><a href="/cart/{{userdetails.ID}}">Cart</a></li>
+                <li><a href="/wishlist/{{userdetails.ID}}">Wishlist</a></li>
+                <li>
+                    <div class="action">
+                        <div class="profile" onclick="dropmenutoggle();" >
+                            <a href="#" style="margin-right: 0px;">Account</a>
+                        </div>
+                        <div class="menu" id="dropdown-menu">
+                            <h3>Hey, There <span class="twemoji" aria-label="Waving Hand"></span><br><span>{{userdetails.NAME}}</span><br><span>{{userdetails.EMAIL}}</span></h3>
+                            <ul>
+                                <li><ion-icon name="log-out-outline"></ion-icon><a href="/login">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+

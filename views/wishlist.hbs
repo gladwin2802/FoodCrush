@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <title>Wishlist - Food Crush</title>
+    <link rel="stylesheet" href="/CSS/products.css">
+    <link rel="stylesheet" href="/CSS/wishlist.css">
+    <link rel="stylesheet" href="/CSS/noProductFound.css">
+    <script src="/JS/products.js"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+        {{> navbar}}
+    </div>
+
+    <div class="small-container">
+        <h2 class="title" style="margin: 30px 0;">Wishlist</h2>
+        <div class="food-container">
+            <div class="row" id="product-container">
+                {{#each products}}
+                {{#if (eq (mod @index 4) 0)}}
+                <div class="row">
+                {{/if}}
+                <div class="col4" data-category="{{category}}">
+                    <a href="/productdetails/{{../userdetails.ID}}/{{pid}}">
+                        <img src="/images/food{{pid}}.jpg" id="product-{{pid}}" alt="Product Image">
+                    </a>
+                    <div class="below-container">
+                        <div class="prod-row">
+                            <h4>{{pname}}</h4>
+                            <div class="rating">
+                                <span>{{{getRatingHTML rating}}}</span>
+                            </div>
+                            <p>INR. {{price}}</p>
+                        </div>
+                        <div class="prod-col">
+                            {{#if (eq liked 0)}}
+                            <a href="/addToWishlist/{{../userdetails.ID}}/{{pid}}" class="wbtn" id="wishlistButton">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </a>
+                            {{else}}
+                            <a href="/addToWishlist/{{../userdetails.ID}}/{{pid}}" class="wbtn" id="wishlistButton">
+                                <ion-icon name="heart"></ion-icon>
+                            </a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{#if (eq (mod @index 4) 3)}}
+                    </div>
+                {{/if}}
+            {{/each}}
+            {{#if checkLastRow}}
+                </div>
+            {{/if}}
+            </div>
+        </div>
+    </div>
+
+    {{#if products}}
+    {{else}}
+        <div class="image-container">
+            <img src="/images/product-not-found.gif" alt="Image">
+            <h3>No food added to Wishlist...</h3>
+        </div>
+    {{/if}}
+
+    {{> footer}}
+
+    <script>
+        // Display the alert pop-up window
+        window.onload = function() {
+            var successMessage = "{{ successMessage }}";
+            if (successMessage) {
+                alert(successMessage);
+            }
+        };
+    </script>
+    <script>
+        function checkLastRow() {
+            const rows = document.querySelectorAll('.row');
+            const lastRow = rows[rows.length - 1];
+            const col4Elements = lastRow.querySelectorAll('.col4');
+            return col4Elements.length != 4;
+        }
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
